@@ -10,17 +10,11 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:codetracker.helloWorld"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"category": "CodeTracker",
-				"command": "codetracker.activate",
-				"title": "Activate"
-			}
-		]
+		"commands": []
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

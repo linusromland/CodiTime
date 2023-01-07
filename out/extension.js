@@ -3,15 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
 // External dependencies
 const vscode_1 = require("vscode");
-function activate(context) {
-    const disposable = vscode_1.commands.registerCommand('codetracker.activate', () => {
-        vscode_1.window.showInformationMessage('CodeTracker activated!');
-        startCodeTracker();
-    });
-    context.subscriptions.push(disposable);
-}
-exports.activate = activate;
-function startCodeTracker() {
+function activate() {
+    console.log('CodeTracker successfully activated!');
     // Get OS and hostname
     const operatingSystem = process.platform;
     const hostname = require('os').hostname();
@@ -41,6 +34,7 @@ function startCodeTracker() {
         workspaceName = vscode_1.workspace.workspaceFolders?.[0].name;
     });
 }
+exports.activate = activate;
 function deactivate() {
     console.log('CodeTracker successfully deactivated!');
 }

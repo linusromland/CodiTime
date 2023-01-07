@@ -1,16 +1,9 @@
 // External dependencies
-import { ExtensionContext, commands, window, workspace } from 'vscode';
+import { window, workspace } from 'vscode';
 
-export function activate(context: ExtensionContext) {
-	const disposable = commands.registerCommand('codetracker.activate', () => {
-		window.showInformationMessage('CodeTracker activated!');
-		startCodeTracker();
-	});
+export function activate() {
+	console.log('CodeTracker successfully activated!');
 
-	context.subscriptions.push(disposable);
-}
-
-function startCodeTracker() {
 	// Get OS and hostname
 	const operatingSystem = process.platform;
 	const hostname = require('os').hostname();
