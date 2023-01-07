@@ -17,8 +17,8 @@
 		"commands": [
 			{
 				"category": "CodeTracker",
-				"command": "codetracker.helloWorld",
-				"title": "Hello World"
+				"command": "codetracker.activate",
+				"title": "Activate"
 			}
 		]
 	},
