@@ -1,3 +1,6 @@
 # Node & NPM
 node_modules
 npm-debug.log
+
+# TypeScript build output
+out
