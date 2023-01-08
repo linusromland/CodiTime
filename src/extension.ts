@@ -4,9 +4,9 @@ import CodiTime from './CodiTime';
 export function activate() {
 	new CodiTime();
 
-	console.log('CodeTracker successfully activated!');
+	console.log('CodiTime successfully activated!');
 }
 
 export function deactivate() {
-	console.log('CodeTracker successfully deactivated!');
+	console.log('CodiTime successfully deactivated!');
 }

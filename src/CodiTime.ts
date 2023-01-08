@@ -33,25 +33,25 @@ export default class CodiTime {
 			if (e.focused) {
 				this.restartTimeout();
 			} else {
-				console.log('CodeTracker: Window unfocused!');
+				console.log('CodiTime: Window unfocused!');
 			}
 		});
 
 		//Log on typing
 		window.onDidChangeTextEditorSelection(() => {
-			console.log('CodeTracker: Typing!');
+			console.log('CodiTime: Typing!');
 			this.restartTimeout();
 		});
 
 		window.onDidChangeActiveTextEditor(() => {
 			this.triggerTimeoutImmediately();
-			console.log('CodeTracker: Active document changed!');
+			console.log('CodiTime: Active document changed!');
 		});
 
 		//Log before closing visual studio code
 		process.on('exit', () => {
 			this.triggerTimeoutImmediately();
-			console.log('CodeTracker: Visual Studio Code closed!');
+			console.log('CodiTime: Visual Studio Code closed!');
 		});
 	}
 
@@ -84,7 +84,7 @@ export default class CodiTime {
 		clearTimeout(this.timeout);
 		this.timeout = setTimeout(() => {
 			this.sendData();
-			console.log('CodeTracker: Timeout!');
+			console.log('CodiTime: Timeout!');
 		}, TIMEOUT_TIME);
 	}
 
