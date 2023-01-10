@@ -1,13 +1,10 @@
 // External dependencies
 import { Module } from '@nestjs/common';
 
-// Internal dependencies
-import databaseProvider from './providers/database.provider';
+// Module imports
+import { HeartbeatsModule } from './routes/heartbeats/heartbeats.module';
 
 @Module({
-	imports: [],
-	controllers: [],
-	providers: [...databaseProvider],
-	exports: [...databaseProvider]
+	imports: [HeartbeatsModule]
 })
 export class AppModule {}
