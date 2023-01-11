@@ -1,7 +1,12 @@
+//External dependencies
+import { ExtensionContext } from 'vscode';
+
 // Internal dependencies
 import CodiTime from './CodiTime';
 
-export function activate() {
+export function activate(context: ExtensionContext) {
+	console.log(context.globalState.get('coditime'));
+
 	new CodiTime();
 
 	console.log('CodiTime successfully activated!');
