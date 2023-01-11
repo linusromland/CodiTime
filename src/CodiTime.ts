@@ -1,19 +1,24 @@
 // External dependencies
-import { window, workspace } from 'vscode';
+import { ExtensionContext, window, workspace } from 'vscode';
+
+// Internal dependencies
+import { API_KEY_KEY } from './util/constants';
 
 const TIMEOUT_TIME = 1000 * 30; // 30 seconds
 
 export default class CodiTime {
+	private context: ExtensionContext;
+
 	private operatingSystem: string;
 	private hostname: string;
-
 	private startTime: Date;
 	private previousDocument: string;
 	private workspaceName: string;
-
 	private timeout: NodeJS.Timeout | undefined;
 
-	constructor() {
+	constructor(context: ExtensionContext) {
+		this.context = context;
+
 		// Get OS and hostname
 		this.operatingSystem = process.platform;
 		this.hostname = require('os').hostname();
@@ -67,6 +72,7 @@ export default class CodiTime {
 
 		// Log the data
 		console.log('\n----------------------------------------------------------------');
+		console.log(`API Key: ${this.context.globalState.get(API_KEY_KEY)}`);
 		console.log(`Time spent: ${timeSpent}ms`);
 		console.log(`File: ${this.previousDocument}`);
 		console.log(`Workspace: ${this.workspaceName}`);

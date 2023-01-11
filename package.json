@@ -14,7 +14,13 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": []
+		"commands": [
+			{
+				"category": "CodiTime",
+				"command": "coditime.apiKey",
+				"title": "Api Key"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
