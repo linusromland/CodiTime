@@ -5,3 +5,6 @@ npm-debug.log
 # TypeScript build output
 out
 dist
+
+# VSCode Extension file
+*.vsix

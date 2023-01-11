@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added base structure for the project.
-- Added basic time tracking logging.
-- Added automatic start of the extension.
+## [0.0.1] - 2023-01-11
+
+### Added
+
+- Basic local time tracking
