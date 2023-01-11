@@ -1,5 +1,6 @@
 // External dependencies
 import { ExtensionContext, window, workspace } from 'vscode';
+import axios from 'axios';
 
 // Internal dependencies
 import { API_KEY_KEY } from './util/constants';
@@ -37,48 +38,60 @@ export default class CodiTime {
 		window.onDidChangeWindowState((e) => {
 			if (e.focused) {
 				this.restartTimeout();
-			} else {
-				console.log('CodiTime: Window unfocused!');
 			}
 		});
 
 		//Log on typing
 		window.onDidChangeTextEditorSelection(() => {
-			console.log('CodiTime: Typing!');
 			this.restartTimeout();
 		});
 
 		window.onDidChangeActiveTextEditor(() => {
 			this.triggerTimeoutImmediately();
-			console.log('CodiTime: Active document changed!');
 		});
 
 		//Log before closing visual studio code
 		process.on('exit', () => {
 			this.triggerTimeoutImmediately();
-			console.log('CodiTime: Visual Studio Code closed!');
 		});
 	}
 
-	sendData() {
+	async sendData() {
 		const activeDocument = window.activeTextEditor?.document.uri.path;
 
 		if (!activeDocument) {
 			return;
 		}
 
+		const splittedFile = this.previousDocument.split('/');
+
+		const file = {
+			path: this.previousDocument.slice(0, this.previousDocument.length - splittedFile[splittedFile.length - 1].length),
+			name: splittedFile[splittedFile.length - 1].split('.')[0],
+			extension: splittedFile[splittedFile.length - 1].split('.')[1]
+		};
+
 		// Calculate the time spent on the previous document
 		const timeSpent = new Date().getTime() - this.startTime.getTime();
 
-		// Log the data
-		console.log('\n----------------------------------------------------------------');
-		console.log(`API Key: ${this.context.globalState.get(API_KEY_KEY)}`);
-		console.log(`Time spent: ${timeSpent}ms`);
-		console.log(`File: ${this.previousDocument}`);
-		console.log(`Workspace: ${this.workspaceName}`);
-		console.log(`OS: ${this.operatingSystem}`);
-		console.log(`Hostname: ${this.hostname}`);
-		console.log('----------------------------------------------------------------\n');
+		const request = await axios.post(
+			'http://localhost:3000/heartbeats',
+			{
+				project: this.workspaceName,
+				heartbeat: {
+					file,
+					operatingSystem: this.operatingSystem,
+					hostname: this.hostname,
+					editor: 'vscode',
+					time: timeSpent
+				}
+			},
+			{
+				validateStatus: () => true
+			}
+		);
+
+		console.log(request.status === 201 ? 'CodiTime: Heartbeat sent!' : 'CodiTime: Heartbeat not sent!');
 
 		// Update the startTime, previousDocument and workspaceName variables
 		this.startTime = new Date();
@@ -90,7 +103,6 @@ export default class CodiTime {
 		clearTimeout(this.timeout);
 		this.timeout = setTimeout(() => {
 			this.sendData();
-			console.log('CodiTime: Timeout!');
 		}, TIMEOUT_TIME);
 	}
 
