@@ -1,11 +1,15 @@
+// External dependencies
 import * as mongoose from 'mongoose';
+
+// Internal dependencies
+import { MONGODB_URI } from 'src/utils/env';
 
 const databaseProviders = [
 	{
 		provide: 'DATABASE_CONNECTION',
 		useFactory: (): Promise<typeof mongoose> => {
 			mongoose.set('strictQuery', false);
-			return mongoose.connect('mongodb://127.0.0.1:27017/coditime');
+			return mongoose.connect(MONGODB_URI);
 		}
 	}
 ];
