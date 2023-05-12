@@ -22,6 +22,8 @@ services:
             - MONGODB_URI=mongodb://mongo:27017/coditime
         networks:
             - default
+        ports:
+            - '3000:3000'
 networks:
     default:
 volumes:
