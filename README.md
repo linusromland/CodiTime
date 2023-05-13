@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./logo/icon.svg" width="224px"/><br/>
+  <img src="./logo/icon.png" width="224px"/><br/>
   CodiTime Documentation
 </h1>
 
