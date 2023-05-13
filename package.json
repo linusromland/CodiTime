@@ -8,7 +8,7 @@
 	"license": "MIT",
 	"version": "0.0.3",
 	"pricing": "Free",
-	"icon": "https://raw.githubusercontent.com/CodiTime/CodiTime-docs/main/logo/icon.png",
+	"icon": "images/icon.png",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CodiTime/CodiTime-vscode.git"
