@@ -3,10 +3,12 @@
 	"displayName": "CodiTime",
 	"description": "CodiTime tracks your time spent in different projects and files in Visual Studio Code.",
 	"author": "Linus Romland (linusromland)",
-	"publisher": "CodiTime",
+	"publisher": "linusromland",
 	"homepage": "https://github.com/CodiTime/CodiTime-vscode#readme",
 	"license": "MIT",
-	"version": "0.0.1",
+	"version": "0.0.2",
+	"pricing": "Free",
+	"icon": "https://raw.githubusercontent.com/CodiTime/CodiTime-docs/main/logo/icon.png",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CodiTime/CodiTime-vscode.git"
