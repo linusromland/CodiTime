@@ -29,7 +29,12 @@
 			{
 				"category": "CodiTime",
 				"command": "coditime.apiKey",
-				"title": "Api Key"
+				"title": "API Key"
+			},
+			{
+				"category": "CodiTime",
+				"command": "coditime.apiUrl",
+				"title": "API Url"
 			}
 		]
 	},

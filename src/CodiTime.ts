@@ -3,7 +3,7 @@ import { ExtensionContext, window, workspace } from 'vscode';
 import axios from 'axios';
 
 // Internal dependencies
-import { API_KEY_KEY } from './util/constants';
+import { API_KEY_KEY, API_URL } from './util/constants';
 
 const TIMEOUT_TIME = 1000 * 30; // 30 seconds
 
@@ -74,11 +74,15 @@ export default class CodiTime {
 		// Calculate the time spent on the previous document
 		const timeSpent = new Date().getTime() - this.startTime.getTime();
 
+		const REQUEST_URL = this.context.globalState.get(API_URL) || API_URL;
+		console.log('Sending request to: ' + REQUEST_URL);
+
 		const request = await axios.post(
-			'http://localhost:3000/heartbeats',
+			`${REQUEST_URL}/heartbeats`,
 			{
 				project: this.workspaceName,
 				heartbeat: {
+					apiKey: this.context.globalState.get(API_KEY_KEY),
 					file,
 					operatingSystem: this.operatingSystem,
 					hostname: this.hostname,
