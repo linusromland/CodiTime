@@ -1,4 +1,4 @@
-FROM node:18-alpine as api
+FROM node:18 as api
 
 WORKDIR /app
 

@@ -1,5 +1,5 @@
 // Internal dependencies
-import { HeartbeatSchema } from './heartbeat.schema';
-import { ProjectSchema } from './project.schema';
+import { HeartbeatSchema } from './Heartbeat.schema';
+import { ProjectSchema } from './Project.schema';
 
 export { HeartbeatSchema, ProjectSchema };
