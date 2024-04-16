@@ -35,8 +35,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/linusromland/coditime:latest
-            ghcr.io/linusromland/coditime:${{ env.VERSION }}
+            ghcr.io/linusromland/CodiTime:latest
+            ghcr.io/linusromland/CodiTime:${{ env.VERSION }}
       - name: Create GitHub Release
         if: env.IMAGE_EXISTS == 'no'
         uses: actions/create-release@v1
