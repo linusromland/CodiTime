@@ -1,10 +1,9 @@
 {
 	"name": "coditime-api",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "",
-	"author": "",
-	"private": true,
-	"license": "UNLICENSED",
+	"author": "Linus Romland",
+	"license": "MIT",
 	"scripts": {
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\"",
