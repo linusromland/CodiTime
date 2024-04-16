@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}-api
+          release_name: ${{ env.VERSION }}-api
           draft: false
           prerelease: false
       - name: Update Release Notes
