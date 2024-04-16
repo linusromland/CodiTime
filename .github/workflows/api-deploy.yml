@@ -22,7 +22,7 @@ jobs:
 
       - name: Check if image with version already exists
         run: |
-          if curl --silent --fail --location "https://ghcr.io/v2/linusromland/coditimeapi/manifests/${{ env.VERSION }}" > /dev/null; then
+          if curl --silent --fail --location "https://ghcr.io/v2/linusromland/coditime/manifests/${{ env.VERSION }}" > /dev/null; then
             echo "IMAGE_EXISTS=yes" >> $GITHUB_ENV
           else
             echo "IMAGE_EXISTS=no" >> $GITHUB_ENV
@@ -35,8 +35,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ghcr.io/linusromland/CodiTime:latest
-            ghcr.io/linusromland/CodiTime:${{ env.VERSION }}
+            ghcr.io/linusromland/coditime:latest
+            ghcr.io/linusromland/coditime:${{ env.VERSION }}
       - name: Create GitHub Release
         if: env.IMAGE_EXISTS == 'no'
         uses: actions/create-release@v1
