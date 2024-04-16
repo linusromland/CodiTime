@@ -1,9 +1,9 @@
 <h1 align="center">
   <img src="./logo/icon.png" width="224px"/><br/>
-  CodiTime Documentation
+  CodiTime
 </h1>
 
 
 ## ⚠️ License
 
-`CodiTime Documentation` is licensed under the [GNU Free Documentation License](https://github.com/CodiTime/CodiTime-docs/blob/master/LICENSE).
+`CodiTime` is licensed under the [MIT License](https://github.com/linusromland/CodiTime/blob/master/LICENSE).
