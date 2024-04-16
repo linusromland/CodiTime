@@ -3,6 +3,8 @@
   CodiTime
 </h1>
 
+CodiTime is a simple time tracking tool for Visual Studio Code.
+
 
 ## ⚠️ License
 
