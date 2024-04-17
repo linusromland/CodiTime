@@ -31,8 +31,8 @@ jobs:
         if: env.IMAGE_EXISTS == 'no'
         uses: docker/build-push-action@v2
         with:
-          context: ./api
-          file: ./Dockerfile
+          context: .
+          file: ./api/Dockerfile
           push: true
           tags: ghcr.io/linusromland/coditime:${{ env.VERSION }}api
       - name: Create GitHub Release
