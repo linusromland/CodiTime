@@ -20,6 +20,7 @@ jobs:
 
       - name: Extract version from package.json
         run: echo "VERSION=$(jq -r .version ./extension/package.json)" >> $GITHUB_ENV
+        working-directory: ./extension
 
       - name: Check if extension with version already exists
         run: |
@@ -28,9 +29,11 @@ jobs:
           else
             echo "EXTENSION_EXISTS=no" >> $GITHUB_ENV
           fi
+        working-directory: ./extension
 
       - name: Build and Publish Extension
         if: env.EXTENSION_EXISTS == 'no'
         run: |
+          cd ./extension
           vsce package
           vsce publish -p ${{ secrets.VSCE_TOKEN }}
