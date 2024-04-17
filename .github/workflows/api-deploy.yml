@@ -34,21 +34,21 @@ jobs:
           context: ./api
           file: ./api/Dockerfile
           push: true
-          tags: ghcr.io/linusromland/coditime:${{ env.VERSION }}api
+          tags: ghcr.io/linusromland/coditime:${{ env.VERSION }}-api
       - name: Create GitHub Release
         if: env.IMAGE_EXISTS == 'no'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}api
-          release_name: ${{ env.VERSION }}api
+          tag_name: ${{ env.VERSION }}-api
+          release_name: ${{ env.VERSION }}-api
           draft: false
           prerelease: false
       - name: Update Release Notes
         if: env.IMAGE_EXISTS == 'no'
         run: |
-          VERSION=${{ env.VERSION }}api
+          VERSION=${{ env.VERSION }}-api
           RELEASE_NOTES=$(awk -v ver="$VERSION" 'BEGIN {RS="## "; FS="\n"} $1 ~ ver {for (i=2; i<=NF; i++) print $i}' ./api/CHANGELOG.md)
           RELEASE_NOTES_ESCAPED=$(echo "$RELEASE_NOTES" | sed ':a;N;$!ba;s/\n/\\n/g')
           RELEASE_URL="https://api.github.com/repos/${{ github.repository }}/releases/tags/v$VERSION"
