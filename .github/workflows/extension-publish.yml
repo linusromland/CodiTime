@@ -1,0 +1,36 @@
+name: Build and publish VSCode extension
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install VSCE
+        run: npm install -g vsce@latest
+
+      - name: Extract version from package.json
+        run: echo "VERSION=$(jq -r .version ./extension/package.json)" >> $GITHUB_ENV
+
+      - name: Check if extension with version already exists
+        run: |
+          if curl --silent --fail --location "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/linusromland/vsextensions/coditime/${{ env.VERSION }}/vspackage" > /dev/null; then
+            echo "EXTENSION_EXISTS=yes" >> $GITHUB_ENV
+          else
+            echo "EXTENSION_EXISTS=no" >> $GITHUB_ENV
+          fi
+
+      - name: Build and Publish Extension
+        if: env.EXTENSION_EXISTS == 'no'
+        run: |
+          vsce package
+          vsce publish -p ${{ secrets.VSCE_TOKEN }}
