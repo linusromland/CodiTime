@@ -35,5 +35,6 @@ jobs:
         if: env.EXTENSION_EXISTS == 'no'
         run: |
           cd ./extension
+          npm install
           vsce package
           vsce publish -p ${{ secrets.VSCE_TOKEN }}
